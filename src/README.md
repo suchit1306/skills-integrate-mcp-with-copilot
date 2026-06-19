@@ -34,17 +34,13 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 ## Data Model
 
-The application uses a simple data model with meaningful identifiers:
+The application now uses a persistent SQLite database with normalized tables:
 
-1. **Activities** - Uses activity name as identifier:
+1. **activities**
+   - `id`, `name`, `description`, `schedule`, `max_participants`
+2. **students**
+   - `id`, `email`
+3. **activity_registrations**
+   - `activity_id`, `student_id`, `created_at`
 
-   - Description
-   - Schedule
-   - Maximum number of participants allowed
-   - List of student emails who are signed up
-
-2. **Students** - Uses email as identifier:
-   - Name
-   - Grade level
-
-All data is stored in memory, which means data will be reset when the server restarts.
+The database file is stored at `src/data/school.db` and is automatically initialized/seeded on startup.
